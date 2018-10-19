@@ -1,3 +1,3 @@
 # Algorithms
 
-This repository is used to practise some algorithm excercises.
+This repository is used to practise some data structure and algorithm excercises.
