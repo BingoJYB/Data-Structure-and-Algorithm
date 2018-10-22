@@ -1,6 +1,5 @@
 import math
 
-
 def solution(ls):
     sorted_ls = sorted(ls)
     max_dis = -math.inf
