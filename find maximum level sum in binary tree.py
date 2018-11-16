@@ -22,12 +22,12 @@ def get_level_sum(root):
     maximum = -math.inf
 
     while len(queue) > 0:
-        temp = queue[:]
-        queue = []
+        count = len(queue)
         sum = 0
 
-        while len(temp) > 0:
-            node = temp.pop(0)
+        while count > 0:
+            node = queue.pop(0)
+            count -= 1
             sum += node.data
 
             if node.left is not None:
