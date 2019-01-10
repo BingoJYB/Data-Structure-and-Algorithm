@@ -13,7 +13,7 @@ class Queue:
         
         if self.__first == None:
             self.__first = node
-            self.__first = self.__last
+            self.__last = self.__first
         else:
             self.__last.next = node
             self.__last = node
