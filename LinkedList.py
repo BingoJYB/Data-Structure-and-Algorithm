@@ -3,10 +3,9 @@
 '''
 
 class Node:
-    next = None
-    
     def __init__(self, data):
         self.data = data
+        self.next = None
     
 
 def insert(header, node, pos):
