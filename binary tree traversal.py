@@ -8,13 +8,13 @@ class Node:
 def in_order_traversal(node):
     if node is not None:
         in_order_traversal(node.lchild)
-        print(node.data, end=' ')
+        print(node.data)
         in_order_traversal(node.rchild)
 
 
 def pre_order_traversal(node):
     if node is not None:
-        print(node.data, end=' ')
+        print(node.data)
         pre_order_traversal(node.lchild)
         pre_order_traversal(node.rchild)
 
@@ -23,7 +23,7 @@ def post_order_traversal(node):
     if node is not None:
         post_order_traversal(node.lchild)
         post_order_traversal(node.rchild)
-        print(node.data, end=' ')
+        print(node.data)
 
 
 if __name__ == '__main__':
@@ -34,15 +34,15 @@ if __name__ == '__main__':
     node1 = Node(5, node3, node4)
     root = Node(10, node1, node2)
 
-    print('pre-order traversal:', end=' ')
+    print('pre-order traversal:')
     pre_order_traversal(root)
 
     print('')
 
-    print('in-order traversal:', end=' ')
+    print('in-order traversal:')
     in_order_traversal(root)
 
     print('')
 
-    print('post-order traversal:', end=' ')
+    print('post-order traversal:')
     post_order_traversal(root)
