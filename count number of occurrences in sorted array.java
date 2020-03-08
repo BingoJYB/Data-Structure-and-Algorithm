@@ -1,4 +1,4 @@
-public class countNumberOfOccurrencesInSortedArray {
+class Solution {
     public static int countOccur(int[] arr, int num) {
         int start = 0;
         int end = arr.length;
