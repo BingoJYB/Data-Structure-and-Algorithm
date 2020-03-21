@@ -1,7 +1,7 @@
 /*
  * @lc app=leetcode id=215 lang=javascript
  *
- * [215] kth largest element in an array
+ * [215] Kth Largest Element in an Array
  *
  * https://leetcode.com/problems/kth-largest-element-in-an-array/description/
  *
