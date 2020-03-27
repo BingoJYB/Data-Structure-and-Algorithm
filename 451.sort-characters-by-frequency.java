@@ -1,3 +1,8 @@
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.PriorityQueue;
+import java.util.Queue;
+
 /*
  * @lc app=leetcode id=451 lang=java
  *
@@ -63,7 +68,34 @@
 // @lc code=start
 class Solution {
     public String frequencySort(String s) {
+        HashMap<Character, String> hm = new HashMap<>();
+        Queue<String> pq = new PriorityQueue<String>(new myComparator());
+        StringBuilder sb = new StringBuilder();
 
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            hm.put(c, hm.getOrDefault(c, "") + Character.toString(c));
+        }
+
+        for (String val : hm.values()) {
+            pq.add(val);
+        }
+
+        while (pq.size() > 0) {
+            sb.append(pq.poll());
+        }
+
+        return sb.toString();
+    }
+}
+
+class myComparator implements Comparator<String> {
+    public int compare(String s1, String s2) {
+        if (s2.length() > s1.length()) {
+            return 1;
+        } else {
+            return -1;
+        }
     }
 }
 // @lc code=end
