@@ -46,27 +46,44 @@ import java.util.Stack;
 
 // @lc code=start
 class MinStack {
-    Stack<Integer> stack;
+    Stack<Integer> main_stack;
+    Stack<Integer> minor_stack;
 
     /** initialize your data structure here. */
     public MinStack() {
-        
+        main_stack = new Stack<Integer>();
+        minor_stack = new Stack<Integer>();
     }
     
     public void push(int x) {
-        
+        main_stack.push(x);
+
+        if (minor_stack.isEmpty())
+            minor_stack.push(x);
+        else if (minor_stack.peek() >= x)
+            minor_stack.push(x);
     }
     
     public void pop() {
-        
+        int popped = 0;
+
+        if (main_stack.size() > 0)
+            popped = main_stack.pop();
+
+        if (popped == minor_stack.peek())
+            minor_stack.pop();
     }
     
     public int top() {
-        
+        if (main_stack.size() > 0)
+            return main_stack.peek();
+        return 0;
     }
     
     public int getMin() {
-        
+        if (minor_stack.size() > 0)
+            return minor_stack.peek();
+        return 0;
     }
 }
 
