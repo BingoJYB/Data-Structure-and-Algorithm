@@ -96,7 +96,50 @@
  */
 public class Solution {
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-        
+        int n = 0;
+        int m = 0;
+        int diff = 0;
+        ListNode tempA = headA;
+        ListNode tempB = headB;
+
+        if (headA == null || headB == null) {
+            return null;
+        }
+
+        while (tempA != null) {
+            n++;
+            tempA = tempA.next;
+        }
+
+        while (tempB != null) {
+            m++;
+            tempB = tempB.next;
+        }
+
+        diff = Math.abs(n - m);
+        tempA = headA;
+        tempB = headB;
+
+        if (n > m) {
+            for (int i = 0; i < diff; i++) {
+                tempA = tempA.next;
+            }
+        } else if (m > n) {
+            for (int i = 0; i < diff; i++) {
+                tempB = tempB.next;
+            }
+        }
+
+        while (tempB != null && tempA != null) {
+            if (tempA == tempB) {
+                return tempA;
+            }
+
+            tempA = tempA.next;
+            tempB = tempB.next;
+        }
+
+        return null;
     }
 }
 // @lc code=end
