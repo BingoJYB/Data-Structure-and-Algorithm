@@ -1,5 +1,5 @@
-import java.util.Deque;
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.List;
 
 /*
  * @lc app=leetcode id=640 lang=java
@@ -73,8 +73,8 @@ import java.util.LinkedList;
 // @lc code=start
 class Solution {
     public String solveEquation(String equation) {
-        Deque<Integer> x = new LinkedList<Integer>();
-        Deque<Integer> non_x = new LinkedList<Integer>();
+        List<Integer> x = new ArrayList<Integer>();
+        List<Integer> non_x = new ArrayList<Integer>();
         int flag = 1;
         int symbol = flag;
         int dividend = 0;
@@ -84,25 +84,25 @@ class Solution {
         for (int i = 0; i < equation.length(); i++) {
             if (equation.charAt(i) == '=') {
                 if (tempInt != "")
-                    non_x.addFirst(Integer.parseInt(tempInt) * symbol);
+                    non_x.add(Integer.parseInt(tempInt) * symbol);
                 tempInt = "";
                 flag = -1;
                 symbol = flag;
             } else if (equation.charAt(i) == '-') {
                 if (tempInt != "")
-                    non_x.addFirst(Integer.parseInt(tempInt) * symbol);
+                    non_x.add(Integer.parseInt(tempInt) * symbol);
                 tempInt = "";
                 symbol = -flag;
             } else if (equation.charAt(i) == '+') {
                 if (tempInt != "")
-                    non_x.addFirst(Integer.parseInt(tempInt) * symbol);
+                    non_x.add(Integer.parseInt(tempInt) * symbol);
                 tempInt = "";
                 symbol = flag;
             } else if (equation.charAt(i) == 'x') {
                 if (tempInt.length() == 0) {
-                    x.addFirst(symbol);
+                    x.add(symbol);
                 } else {
-                    x.addFirst(Integer.parseInt(tempInt) * symbol);
+                    x.add(Integer.parseInt(tempInt) * symbol);
                     tempInt = "";
                 }
             } else {
@@ -110,7 +110,7 @@ class Solution {
             }
 
             if (i == equation.length() - 1 && equation.charAt(i) != 'x') {
-                non_x.addFirst(Integer.parseInt(tempInt) * symbol);
+                non_x.add(Integer.parseInt(tempInt) * symbol);
             }
         }
 
