@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-import java.util.List;
-
 /*
  * @lc app=leetcode id=640 lang=java
  *
@@ -73,53 +70,46 @@ import java.util.List;
 // @lc code=start
 class Solution {
     public String solveEquation(String equation) {
-        List<Integer> x = new ArrayList<Integer>();
-        List<Integer> non_x = new ArrayList<Integer>();
-        int flag = 1;
-        int symbol = flag;
         int dividend = 0;
         int divisor = 0;
-        String tempInt = "";
+        int flag = 1;
+        int symbol = flag;
+        String str = "";
 
         for (int i = 0; i < equation.length(); i++) {
             if (equation.charAt(i) == '=') {
-                if (tempInt != "")
-                    non_x.add(Integer.parseInt(tempInt) * symbol);
-                tempInt = "";
+                if (str != "") {
+                    dividend += Integer.parseInt(str) * symbol;
+                    str = "";
+                }
                 flag = -1;
                 symbol = flag;
             } else if (equation.charAt(i) == '-') {
-                if (tempInt != "")
-                    non_x.add(Integer.parseInt(tempInt) * symbol);
-                tempInt = "";
+                if (str != "") {
+                    dividend += Integer.parseInt(str) * symbol;
+                    str = "";
+                }
                 symbol = -flag;
             } else if (equation.charAt(i) == '+') {
-                if (tempInt != "")
-                    non_x.add(Integer.parseInt(tempInt) * symbol);
-                tempInt = "";
+                if (str != "") {
+                    dividend += Integer.parseInt(str) * symbol;
+                    str = "";
+                }
                 symbol = flag;
             } else if (equation.charAt(i) == 'x') {
-                if (tempInt.length() == 0) {
-                    x.add(symbol);
+                if (str.length() == 0) {
+                    divisor -= symbol;
                 } else {
-                    x.add(Integer.parseInt(tempInt) * symbol);
-                    tempInt = "";
+                    divisor -= Integer.parseInt(str) * symbol;
+                    str = "";
                 }
             } else {
-                tempInt += String.valueOf(equation.charAt(i));
+                str += String.valueOf(equation.charAt(i));
             }
 
             if (i == equation.length() - 1 && equation.charAt(i) != 'x') {
-                non_x.add(Integer.parseInt(tempInt) * symbol);
+                dividend += Integer.parseInt(str) * symbol;
             }
-        }
-
-        for (Integer num : x) {
-            divisor -= num;
-        }
-
-        for (Integer num : non_x) {
-            dividend += num;
         }
 
         if (dividend == 0 && divisor == 0) {
