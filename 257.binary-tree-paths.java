@@ -63,6 +63,7 @@ class Solution {
         return paths;
     }
 
+    @SuppressWarnings("unchecked")
     void traverseBinaryTree(TreeNode node, Stack<Integer> nodes, List<String> paths) {
         if (node != null && node.left == null && node.right == null) {
             String path = "";
@@ -78,10 +79,8 @@ class Solution {
             paths.add(path);
         } else if (node != null) {
             nodes.push(node.val);
-            Stack<Integer> nodesCopy = (Stack<Integer>)nodes.clone();
-            traverseBinaryTree(node.left, nodesCopy, paths);
-            nodesCopy = (Stack<Integer>)nodes.clone();
-            traverseBinaryTree(node.right, nodesCopy, paths);
+            traverseBinaryTree(node.left, (Stack<Integer>)nodes.clone(), paths);
+            traverseBinaryTree(node.right, (Stack<Integer>)nodes.clone(), paths);
         }
     }
 }
