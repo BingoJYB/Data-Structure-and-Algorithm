@@ -59,23 +59,20 @@
 #         self.next = next
 class Solution:
     def oddEvenList(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        odd_head, even_head = ListNode(), ListNode()
-        odd, even = odd_head, even_head
-        count = 1
+        if head is None:
+            return
+        
+        odd, even = head, head.next
+        even_head = even
 
-        while head:
-            if count % 2 == 1:
-                odd.next = ListNode(val=head.val)
-                odd = odd.next
-            else:
-                even.next = ListNode(val=head.val)
-                even = even.next
+        while even and even.next:
+            odd.next = odd.next.next
+            even.next = even.next.next
+            odd = odd.next
+            even = even.next
 
-            count += 1
-            head = head.next
+        odd.next = even_head
 
-        odd.next = even_head.next
-
-        return odd_head.next
+        return head
 # @lc code=end
 
