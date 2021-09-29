@@ -61,14 +61,14 @@ class Solution:
         if not root:
             return root
 
-        q = [root]
         res = []
-        node_vals = []
+        q = [root]
+        temp_res = []
         temp_q = []
 
         while q:
             node = q.pop(0)
-            node_vals.append(node.val)
+            temp_res.append(node.val)
 
             if node.left:
                 temp_q.append(node.left)
@@ -76,11 +76,11 @@ class Solution:
             if node.right:
                 temp_q.append(node.right)
 
-            if not q and node_vals:
-                res.insert(0, node_vals[:])
+            if not q and temp_res:
+                res.insert(0, temp_res[:])
                 q = temp_q[:]
-                node_vals = []
-                temp_q = []
+                temp_res.clear()
+                temp_q.clear()
 
         return res
 # @lc code=end
