@@ -48,17 +48,17 @@
 class Solution:
     def helper(self, nums, result, results):
         if not nums:
-            if result not in results:
-                results.append(result)
-
-            return
+            results.append(result)
 
         for i in range(len(nums)):
+            if i > 0 and nums[i] == nums[i-1]:
+                continue
+
             self.helper(nums[:i]+nums[i+1:], result+[nums[i]], results)
     
     def permuteUnique(self, nums: List[int]) -> List[List[int]]:
         results = []
-        self.helper(nums, [], results)
+        self.helper(sorted(nums), [], results)
         return results
     
 # @lc code=end
