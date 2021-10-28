@@ -92,7 +92,7 @@
 class Solution:
     def isNumber(self, s: str) -> bool:
         import re
-        pattern = r"^[+|-]?(\d+\.?\d*|\.\d+){1}([eE]{1}[+|-]?\d+)?$"
+        pattern = r"^[+|-]?(\d+\.?\d*|\.\d+)([eE][+|-]?\d+)?$"
         return re.search(pattern, s)
 # @lc code=end
 
