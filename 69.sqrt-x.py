@@ -49,19 +49,20 @@
 # @lc code=start
 class Solution:
     def mySqrt(self, x: int) -> int:
-        if x == 0:
-            return 0
-        elif x == 1:
-            return 1
-        
-        for i in range(1, x):
-            temp = i ** 2
+        lo = 0
+        hi = x
 
-            if temp == x:
-                return i
-            elif temp > x:
-                return i - 1
+        while lo <= hi:
+            mid = (lo + hi) // 2
+            sq = mid ** 2
 
-        return x - 1
+            if sq < x:
+                lo = mid + 1
+            elif sq > x:
+                hi = mid - 1
+            else:
+                return mid
+
+        return lo - 1
 # @lc code=end
 
