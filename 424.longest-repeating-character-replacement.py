@@ -67,10 +67,6 @@ class Solution:
                 res = max(res, cells_count)
             else:
                 c_frequency[s[left]] -= 1
-                
-                if not c_frequency[s[left]]:
-                    c_frequency.pop(s[left])
-                    
                 left += 1
             
         return res
