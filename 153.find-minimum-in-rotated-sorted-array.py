@@ -73,18 +73,16 @@
 # @lc code=start
 class Solution:
     def findMin(self, nums: List[int]) -> int:
-        lo, mid, hi = 0, 0, len(nums) - 1
+        left, right = 0, len(nums) - 1
         
-        while lo < hi - 1:
-            mid = (lo + hi) // 2
+        while left < right:
+            mid = (left + right) // 2
             
-            if nums[mid] < nums[lo]:
-                hi = mid
-            elif nums[mid] > nums[hi]:
-                lo = mid
+            if nums[mid] > nums[right]:
+                left = mid + 1
             else:
-                hi = mid
+                right = mid
             
-        return min(nums[mid], nums[lo], nums[hi])
+        return nums[left]
 # @lc code=end
 
