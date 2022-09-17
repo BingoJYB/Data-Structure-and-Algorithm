@@ -62,34 +62,21 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    memoization = {}
+    res = True
     
     def isBalanced(self, root: Optional[TreeNode]) -> bool:
-        if not root:
-            return True
-        
-        isLeftBalanced = self.isBalanced(root.right)
-        isRightBalanced = self.isBalanced(root.left)
-        left_height = self.getHeight(root.left, 0)
-        right_height = self.getHeight(root.right, 0)
-        
-        return isLeftBalanced and isRightBalanced and True if abs(left_height - right_height) < 2 else False
+        self.getHeight(root)
+        return self.res
     
-    def getHeight(self, node, height):
+    def getHeight(self, node):
         if not node:
             return 0
         
-        if node.left in self.memoization.keys():
-            left_height = self.memoization[node.left]
-        else:
-            left_height = self.getHeight(node.left, height)
-            self.memoization[node.left] = left_height
-            
-        if node.right in self.memoization.keys():
-            right_height = self.memoization[node.right]
-        else:
-            right_height = self.getHeight(node.right, height)
-            self.memoization[node.right] = right_height
+        right_height = self.getHeight(node.right)
+        left_height = self.getHeight(node.left)
+        
+        if self.res:
+            self.res = abs(left_height - right_height) < 2
         
         return max(left_height, right_height) + 1
 # @lc code=end
