@@ -65,26 +65,20 @@
 #         self.left = left
 #         self.right = right
 class Solution:
+    prev_node = None
+    
     def flatten(self, root: Optional[TreeNode]) -> None:
         """
         Do not return anything, modify root in-place instead.
         """
-        nodes = []
-        self.collectNodes(root, nodes)
-        
-        if len(nodes) > 1:
-            for i in range(1, len(nodes)-1):
-                nodes[i].right = nodes[i+1]
-        
-            root.left = None
-            root.right = nodes[1]
-        
-    def collectNodes(self, node, nodes):
-        if node is None:
+        if not root:
             return
         
-        nodes.append(TreeNode(node.val))
-        self.collectNodes(node.left, nodes)
-        self.collectNodes(node.right, nodes)
+        self.flatten(root.right)
+        self.flatten(root.left)
+        
+        root.right = self.prev_node
+        root.left = None
+        self.prev_node = root
 # @lc code=end
 
